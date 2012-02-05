@@ -1,12 +1,25 @@
 <html>
 <head>
 <title> Solar system simulator </title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<script type="text/javascript" src="javascripts/html5slider.js"> </script>
 </head>
 <body>
 <canvas id="main" width=900 height=600> </canvas> <br/>
 
-<button id="start_button" type="button"> Start simulation </button> <br />
-<button id="stop_button" type="button"> Stop simulation </button> <br />
+<div>
+  <button id="start_button" type="button"> Start simulation </button> 
+  <button id="stop_button" type="button"> Stop simulation </button> 
+</div>
+
+ <form>
+  Simulation speed <input id="hours_per_step" type="range" min="1" max="61" value="30" step="5">
+</form>
+
+<div class="code">
+<a href="https://github.com/JordiPolo/usimulator">Get the code</a>
+
+</div>
 
 <script type="text/javascript" src="javascripts/simulation.js"> </script>
 </body>

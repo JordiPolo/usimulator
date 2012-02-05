@@ -155,6 +155,7 @@
       this.clear_canvas = __bind(this.clear_canvas, this);
       this.display_info = __bind(this.display_info, this);
       this.step = __bind(this.step, this);
+      this.set_step = __bind(this.set_step, this);
       this.stop = __bind(this.stop, this);
       this.start = __bind(this.start, this);      this.current_time = 0;
       this.solar_system = new SolarSystem;
@@ -171,6 +172,11 @@
 
     Simulation.prototype.stop = function() {
       return this.simulation_running = false;
+    };
+
+    Simulation.prototype.set_step = function() {
+      hours_per_step = 1 * document.getElementById("hours_per_step").value;
+      return dt = 3600 * hours_per_step;
     };
 
     Simulation.prototype.step = function() {
@@ -207,13 +213,24 @@
 
   canvas = canvas_element.getContext("2d");
 
+  canvas_element.width = window.innerWidth * 0.95;
+
+  canvas_element.height = window.innerHeight * 0.8;
+
   simulation = new Simulation;
 
   document.getElementById("start_button").addEventListener("click", simulation.start);
 
   document.getElementById("stop_button").addEventListener("click", simulation.stop);
 
+  document.getElementById("hours_per_step").addEventListener("change", simulation.set_step);
+
   simulation.start();
+
+  window.onresize = function(event) {
+    canvas_element.width = window.innerWidth * 0.95;
+    return canvas_element.height = window.innerHeight * 0.8;
+  };
 
   scale = 1;
 

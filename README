@@ -1,5 +1,7 @@
 
 Very simple gravitational simulator. It only accounts for the effects of the sun over other celestial entities. 
 
+live at <a href="http://usim.heroku.com">usim.heroku.com</a>
+
 Pet project to learn CoffeeScript.
 

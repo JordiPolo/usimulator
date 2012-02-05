@@ -149,6 +149,11 @@ class Simulation
   stop: () =>
     @simulation_running = false
 
+  set_step: () => 
+    hours_per_step = 1 * document.getElementById("hours_per_step").value
+    # actual variable used in physics (we use seconds)
+    dt = 3600 * hours_per_step
+    
   step: () =>
     this.clear_canvas()
 
@@ -167,7 +172,7 @@ class Simulation
     canvas.fillText("#{years} years, #{days} days ", 10, 20)
     canvas.restore()
 
-  #this can go to a canvas class
+  #this can go to a canvas class, redimension and clear
   clear_canvas: =>
     canvas.save()
     canvas.setTransform(1,0,0,1,0,0)
@@ -178,13 +183,22 @@ class Simulation
 canvas_element = document.getElementById("main")
 canvas = canvas_element.getContext "2d"
 
+canvas_element.width  = window.innerWidth*0.95
+canvas_element.height = window.innerHeight*0.8
+
 
 simulation = new Simulation
 document.getElementById("start_button").addEventListener "click", simulation.start
 document.getElementById("stop_button").addEventListener "click", simulation.stop
+document.getElementById("hours_per_step").addEventListener "change", simulation.set_step
 
 simulation.start()
 
+
+#trying to do this on every redraw breaks zooming
+window.onresize = (event) ->
+  canvas_element.width  = window.innerWidth*0.95
+  canvas_element.height = window.innerHeight*0.8
 
 
 #####################################
