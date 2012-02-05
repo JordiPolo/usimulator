@@ -1,8 +1,9 @@
 html, body {
-  width:  100%;
+  width:  98%;
   height: 100%;
 }
 
 .code {
   text-align:right;
+  margin-right: 20px;
 }
