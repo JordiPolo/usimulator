@@ -9,6 +9,6 @@ run lambda { |env|
       'Content-Type'  => 'text/html', 
       'Cache-Control' => 'public, max-age=86400' 
     },
-    File.open('public/simulator.html', File::RDONLY)
+    File.open('public/simulation.html', File::RDONLY)
   ]
 }
