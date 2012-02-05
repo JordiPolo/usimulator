@@ -63,14 +63,14 @@ class Planet
   draw: () ->
     scaled_center_x = (canvas_element.width / 2 ) / scale
     scaled_center_y = (canvas_element.height / 2 ) / scale
-    center_x = (1/scale) *( 450 + @pos.x * DRAW_SCALE )
-    center_y = (1/scale) *( 300 + @pos.z * DRAW_SCALE)
-    center_x = scaled_center_x + @pos.x * DRAW_SCALE
-    center_y = scaled_center_y + @pos.z * DRAW_SCALE
+    center_x = Math.floor( scaled_center_x + @pos.x * DRAW_SCALE )
+    center_y = Math.floor( scaled_center_y + @pos.z * DRAW_SCALE )
+    #happens when canvas_element not yet initialized
+    return if isNaN(center_x) or isNaN(center_y)
     radius = @radius * DRAW_SCALE * 40
     if @name isnt "Sun"
       radius *= 10
-     
+
     canvas.beginPath()
     canvas.arc(center_x, center_y, radius, 0, 2 * Math.PI, false)
     canvas.fillStyle = @color
@@ -82,6 +82,8 @@ class Planet
     if @name isnt "Sun"
       below = center_y + radius + 5
       canvas.fillText(@name, center_x, below)
+      #alert(center_x)
+      #canvas.fillText(@name, Math.floor(center_x), 10)
 
   print: () ->
     #console.log @name, @pos

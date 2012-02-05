@@ -65,10 +65,9 @@
       var below, center_x, center_y, radius, scaled_center_x, scaled_center_y;
       scaled_center_x = (canvas_element.width / 2) / scale;
       scaled_center_y = (canvas_element.height / 2) / scale;
-      center_x = (1 / scale) * (450 + this.pos.x * DRAW_SCALE);
-      center_y = (1 / scale) * (300 + this.pos.z * DRAW_SCALE);
-      center_x = scaled_center_x + this.pos.x * DRAW_SCALE;
-      center_y = scaled_center_y + this.pos.z * DRAW_SCALE;
+      center_x = Math.floor(scaled_center_x + this.pos.x * DRAW_SCALE);
+      center_y = Math.floor(scaled_center_y + this.pos.z * DRAW_SCALE);
+      if (isNaN(center_x) || isNaN(center_y)) return;
       radius = this.radius * DRAW_SCALE * 40;
       if (this.name !== "Sun") radius *= 10;
       canvas.beginPath();
